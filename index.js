@@ -109,8 +109,8 @@ function runStep2() {
   noiDung.appendChild(img); // thêm ảnh vào dưới nội dung
   noiDung.style.fontFamily="Dancing Script";
   const text =
-    "Chúc em luôn nở nụ cười trên môi ...\n" +
-    "Chúc tương lai của em rực rỡ, gặp toàn người thương emem...\n" +
+    "Chúc em luôn nở nụ cười trên môi như ngày trước vậy...\n" +
+    "Chúc tương lai của em rực rỡ, gặp toàn người tốt...\n" +
     "Chúc em thật nhiều hạnh phúc và bình an 💗\n";
 
   let index = 0;
@@ -198,7 +198,7 @@ function runStep3() {
       <div class="thought"><b>HẾT ÒI</b>
       <p>Mãi iuuuuuu🫰🫰🫰</p></div>
       <img src="./meo4.jpg" alt="meo">
-      <canvas id="confettiCanvas" width="1200" height="700" style="position:absolute;top:0;left:0;pointer-events:none;"></canvas>
+      <canvas id="confettiCanvas" width="1400" height="700" style="position:absolute;top:0;left:0;pointer-events:none;"></canvas>
     </div>
   `;
   // Khởi tạo canvas confetti
@@ -274,21 +274,4 @@ function taoTraiTim() {
     setTimeout(() => heart.remove(), 4000);
   }
 }
-function typeWriter(text, elementId, speed = 100) {
-  const el = document.getElementById(elementId);
-  el.innerHTML = ""; // reset
-  let i = 0;
-
-  function typing() {
-    if (i < text.length) {
-      el.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing, speed);
-    }
-  }
-
-  typing();
-}
-
-
 
