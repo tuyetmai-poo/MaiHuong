@@ -104,7 +104,7 @@ function runStep2() {
   const img = document.createElement("img");
   img.src = "./meme.png";
   img.alt = "meo";
-  img.style.width = "18180px";
+  img.style.width = "180px";
   img.style.marginTop = "20px";
   noiDung.appendChild(img); // thêm ảnh vào dưới nội dung
   noiDung.style.fontFamily="Dancing Script";
@@ -289,5 +289,6 @@ function typeWriter(text, elementId, speed = 100) {
 
   typing();
 }
+
 
 
