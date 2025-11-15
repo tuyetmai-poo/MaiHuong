@@ -109,8 +109,8 @@ function runStep2() {
   noiDung.appendChild(img); // thêm ảnh vào dưới nội dung
   noiDung.style.fontFamily="Dancing Script";
   const text =
-    "Chúc em luôn nở nụ cười trên môi như ngày trước vậy...\n" +
-    "Chúc tương lai của em rực rỡ, gặp toàn người tốt...\n" +
+    "Chúc em luôn nở nụ cười trên môi ...\n" +
+    "Chúc tương lai của em rực rỡ, gặp những người thương em...\n" +
     "Chúc em thật nhiều hạnh phúc và bình an 💗\n";
 
   let index = 0;
@@ -274,4 +274,5 @@ function taoTraiTim() {
     setTimeout(() => heart.remove(), 4000);
   }
 }
+
 
