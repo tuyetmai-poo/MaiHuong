@@ -104,7 +104,7 @@ function runStep2() {
   const img = document.createElement("img");
   img.src = "./meme.png";
   img.alt = "meo";
-  img.style.width = "300px";
+  img.style.width = "200px";
   img.style.marginTop = "20px";
   noiDung.appendChild(img); // thêm ảnh vào dưới nội dung
   noiDung.style.fontFamily="Dancing Script";
@@ -198,7 +198,7 @@ function runStep3() {
       <div class="thought"><b>HẾT ÒI</b>
       <p>Mãi iuuuuuu🫰🫰🫰</p></div>
       <img src="./meo4.jpg" alt="meo">
-      <canvas id="confettiCanvas" width="1600" height="800" style="position:absolute;top:0;left:0;pointer-events:none;"></canvas>
+      <canvas id="confettiCanvas" width="1200" height="700" style="position:absolute;top:0;left:0;pointer-events:none;"></canvas>
     </div>
   `;
   // Khởi tạo canvas confetti
@@ -289,3 +289,4 @@ function typeWriter(text, elementId, speed = 100) {
 
   typing();
 }
+
