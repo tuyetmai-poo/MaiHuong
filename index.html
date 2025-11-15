@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chúc Mừng Sinh Nhật 🎉</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Momo+Signature&family=Monsieur+La+Doulaise&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- 🩷 TRANG 1 -->
+    <div id="trang1">
+      <h1>GÁI XINH CLICK VÀO 😝 NHÉ</h1>
+
+      <div class="container">
+        <canvas id="envelopeCanvas" width="600" height="400"></canvas>
+
+        <!-- NÚT TRÁI TIM Ở GIỮA -->
+        <button class="heart-btn" onclick="chuyenTrang()">😝</button>
+      </div>
+    </div>
+
+    <!-- ⭐ TRANG 2 (tự chạy 3 phần liên tục) -->
+    <div id="trang2" style="display: none; text-align: center">
+      <h2 id="tieuDe"></h2>
+      <p
+        id="noiDung"
+        style="white-space: pre-line; font-size: 16px;font-family: Dancing Script ;  line-height: 1.5"
+      ></p>
+
+      <!-- Video -->
+      <video
+        id="videoChucMung"
+        width="400"
+        height="300"
+        style="display: none; border-radius: 10px"
+      ></video>
+
+      <!-- Nút Next -->
+      <button
+        id="nextBtn"
+        style="margin-top: 20px; display: none"
+        onclick="nextStep()"
+      >
+        Tiếp Nào
+      </button>
+      
+    </div>
+
+    <canvas
+      id="particleCanvas"
+      style="position: fixed; top: 0; left: 0; z-index: 0; display: none"
+    ></canvas>
+    <!-- 🌈 VÙNG HIỆU ỨNG CHUNG (dùng cho mọi trang) -->
+    <div id="confetti-container"></div>
+    <audio
+      id="backgroundMusic"
+      src="./Đây Là Bài Hát Sinh Nhật.mp3"
+      loop
+    ></audio>
+    
+
+    <script src="./index.js"></script>
+  </body>
+</html>
