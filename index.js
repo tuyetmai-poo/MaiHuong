@@ -97,7 +97,11 @@ function runStep2() {
   const text =
     "Chúc em luôn nở nụ cười trên môi...\n" +
     "Chúc tương lai rực rỡ, gặp toàn người tốt...\n" +
-    "Chúc em thật nhiều hạnh phúc và bình an 💗\n";
+    "Chúc em thật nhiều hạnh phúc một đời bình an 💗\n"+
+    "Chúc mọi việc em làm đều thuận buồn xuôi gió\n"+
+    "Mọi ngày của em đều là những ngày vui vẻ nhất đáng nhớ nhất\n"+
+    "Và cuối cùng chúc cho em có một ngày sinh nhật thật đáng nhớ 💕💗💗\n"+
+    "HAPPY BIRTHDAYYYYYYYYYYYYYYYYY";
 
   let i = 0;
   const typing = setInterval(() => {
@@ -214,3 +218,4 @@ function tatHieuUngTim() {
   const layer = document.getElementById("heart-layer");
   if (layer) layer.innerHTML = "";
 }
+
