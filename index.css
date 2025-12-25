@@ -101,7 +101,7 @@ canvas {
   background-color: rgb(240, 74, 101);
   transform: rotate(45deg);
   animation: timBay 4s ease-in-out infinite;
-  bottom: -30px; /* xuất hiện từ dưới màn hình */
+  bottom: -75px; /* xuất hiện từ dưới màn hình */
 }
 
 .heart::before,
@@ -196,3 +196,4 @@ canvas {
   margin-top: 140px;
   animation: floatImg 3s ease-in-out infinite; /* thời gian dài hơn */
 }
+
