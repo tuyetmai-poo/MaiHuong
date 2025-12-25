@@ -111,7 +111,11 @@ function runStep2() {
   const text =
     "Chúc em luôn nở nụ cười trên môi ...\n" +
     "Chúc tương lai của em rực rỡ, gặp những người thương em...\n" +
-    "Chúc em thật nhiều hạnh phúc và bình an 💗\n";
+    "Chúc em thật nhiều hạnh phúc một đời bình an 💗\n" +
+    "Chúc cho mội việc em làm luôn thuận buồn suôi gió, quý nhân phù hộ\n" +
+    "Tương lai sán lạn, chúc cho tuổi mới có được mọi thứ.\n"+
+    "Và cuối cùng là chúc em có 1 ngày sinh nhật thật vui vẻ và ý nghĩa.\n"+
+    "HAPPY BIRTHDAY";
 
   let index = 0;
 
@@ -274,5 +278,6 @@ function taoTraiTim() {
     setTimeout(() => heart.remove(), 4000);
   }
 }
+
 
 
