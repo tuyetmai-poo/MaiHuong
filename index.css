@@ -94,45 +94,61 @@ canvas {
 }
 
 /* 💕 TRÁI TIM */
+/* TẦNG HIỆU ỨNG TRÁI TIM */
+#heart-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* vuốt, click xuyên qua */
+  overflow: hidden;     /* không sinh chiều cao */
+  z-index: 9999;
+}
+
+/* TRÁI TIM */
 .heart {
   position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: rgb(240, 74, 101);
+  width: 14px;
+  height: 14px;
+  background: rgb(240, 74, 101);
   transform: rotate(45deg);
-  animation: timBay 4s ease-in-out infinite;
-  bottom: -75px; /* xuất hiện từ dưới màn hình */
+  opacity: 0.8;
+  animation: heartFly linear forwards;
 }
 
 .heart::before,
 .heart::after {
   content: "";
   position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: rgb(247, 63, 93);
+  width: 14px;
+  height: 14px;
+  background: rgb(240, 74, 101);
   border-radius: 50%;
 }
 
 .heart::before {
-  top: -7.5px;
+  top: -7px;
   left: 0;
 }
+
 .heart::after {
-  left: -7.5px;
+  left: -7px;
   top: 0;
 }
 
-@keyframes timBay {
-  0% {
+/* BAY TỪ DƯỚI LÊN */
+@keyframes heartFly {
+  from {
     transform: translateY(0) rotate(45deg);
-    opacity: 0.6;
+    opacity: 0.8;
   }
-  100% {
-    transform: translateY(-70vh) rotate(45deg); /* bay cao hơn */
+  to {
+    transform: translateY(-120vh) rotate(45deg);
     opacity: 0;
   }
 }
+
 
 #videoChucMung {
   display: block;
@@ -196,4 +212,3 @@ canvas {
   margin-top: 140px;
   animation: floatImg 3s ease-in-out infinite; /* thời gian dài hơn */
 }
-
