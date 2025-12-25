@@ -1,40 +1,31 @@
-let soQuaConLai = 3;
+/**********************
+ * BIẾN TOÀN CỤC
+ **********************/
+let step = 1;
 let hieuUngDangChay = null;
+
+/**********************
+ * VẼ BAO THƯ (TRANG 1)
+ **********************/
 const canvas = document.getElementById("envelopeCanvas");
 const ctx = canvas.getContext("2d");
 
-// Vị trí trung tâm
 const cx = canvas.width / 2;
 const cy = canvas.height / 2;
-
-// Kích thước bao thư
 const w = 400;
 const h = 230;
 
-// Màu
-const envelopeColor = "#fdf6e3";
-const flapColor = "#C0C0C0";
+ctx.shadowColor = "rgba(0,0,0,0.4)";
+ctx.shadowBlur = 20;
+ctx.shadowOffsetX = 5;
+ctx.shadowOffsetY = 5;
 
-// đổ bóng
-// VẼ THÂN BAO THƯ với bóng
-ctx.shadowColor = "rgba(0, 0, 0, 0.5)"; // màu bóng
-ctx.shadowBlur = 20; // độ mờ bóng
-ctx.shadowOffsetX = 5; // dịch sang phải
-ctx.shadowOffsetY = 5; // dịch xuống
+ctx.fillStyle = "#fdf6e3";
+ctx.fillRect(cx - w / 2, cy - h / 2, w, h);
 
-ctx.fillStyle = envelopeColor;
-ctx.beginPath();
-ctx.rect(cx - w / 2, cy - h / 2, w, h);
-ctx.fill();
-
-// reset shadow cho các phần khác
 ctx.shadowColor = "transparent";
-ctx.shadowBlur = 0;
-ctx.shadowOffsetX = 0;
-ctx.shadowOffsetY = 0;
 
-// VẼ NẮP
-ctx.fillStyle = flapColor;
+ctx.fillStyle = "#C0C0C0";
 ctx.beginPath();
 ctx.moveTo(cx - w / 2, cy - h / 2);
 ctx.lineTo(cx + w / 2, cy - h / 2);
@@ -42,7 +33,6 @@ ctx.lineTo(cx, cy);
 ctx.closePath();
 ctx.fill();
 
-// VẼ ĐƯỜNG CHÉO
 ctx.strokeStyle = "rgba(0,0,0,0.1)";
 ctx.beginPath();
 ctx.moveTo(cx - w / 2, cy + h / 2);
@@ -50,28 +40,28 @@ ctx.lineTo(cx, cy);
 ctx.lineTo(cx + w / 2, cy + h / 2);
 ctx.stroke();
 
-function chuyenTrang() {
-  // đúng mật khẩu
-  document.getElementById("trang1").style.display = "none";
-  document.getElementById("trang2").style.display = "block";
-}
-let step = 1; // chạy 1 → 2 → 3
-
+/**********************
+ * CHUYỂN TRANG
+ **********************/
 function chuyenTrang() {
   document.getElementById("trang1").style.display = "none";
-  document.getElementById("trang2").style.display = "block";
+  document.getElementById("trang2").style.display = "flex";
   runStep1();
-  startBackgroundMusic(); // bắt đầu phần 1
+  startBackgroundMusic();
 }
 
+/**********************
+ * STEP 1 – VIDEO
+ **********************/
 function runStep1() {
   const video = document.getElementById("videoChucMung");
   const tieuDe = document.getElementById("tieuDe");
   const btn = document.getElementById("nextBtn");
   const noiDung = document.getElementById("noiDung");
+
   document.body.style.backgroundColor = "#98dbc6";
   tieuDe.innerText = "🎬 Video Nho Nhỏ 🎬";
-  noiDung.innerText = "";
+  noiDung.innerHTML = "";
   btn.style.display = "none";
 
   video.src = "sn2.mp4";
@@ -79,97 +69,103 @@ function runStep1() {
   video.play();
 
   video.onended = () => {
-    btn.style.display = "inline-block"; // hiện Next
+    btn.style.display = "inline-block";
   };
 }
 
+/**********************
+ * STEP 2 – GÕ CHỮ + TIM
+ **********************/
 function runStep2() {
-  const noiDung = document.getElementById("noiDung");
   const tieuDe = document.getElementById("tieuDe");
+  const noiDung = document.getElementById("noiDung");
   const video = document.getElementById("videoChucMung");
   const btn = document.getElementById("nextBtn");
-  const container = document.getElementById("confetti-container");
-  noiDung.style.fontFamily="Dancing Script";
-  // đổi nền
+
   document.body.style.backgroundColor = "#fdf6e3";
-
-  // reset container trái tim
-  container.innerHTML = "";
-
-  video.style.display = "none";
+  tieuDe.innerText = "💖 Đôi Lời Gửi Tới Em 💖";
   noiDung.innerHTML = "";
   btn.style.display = "none";
-  tieuDe.innerText = "💖 Đôi Lời Gửi Tới Em 💖";
+  video.style.display = "none";
 
   const img = document.createElement("img");
   img.src = "./meme.png";
-  img.alt = "meo";
   img.style.width = "180px";
-  img.style.marginTop = "20px";
-  noiDung.appendChild(img); // thêm ảnh vào dưới nội dung
-  noiDung.style.fontFamily="Dancing Script";
+  img.style.margin = "20px 0";
+  noiDung.appendChild(img);
+
   const text =
-    "Chúc em luôn nở nụ cười trên môi ...\n" +
-    "Chúc tương lai của em rực rỡ, gặp những người thương em...\n" +
-    "Chúc em thật nhiều hạnh phúc một đời bình an 💗\n" +
-    "Chúc cho mọi việc em làm luôn thuận buồn suôi gió, quý nhân phù hộ.\n" +
-    "Tương lai sán lạn, chúc cho tuổi mới có được mọi thứ.\n"+
-    "Và cuối cùng là chúc em có 1 ngày sinh nhật thật vui vẻ và ý nghĩa.\n"+
-    "HAPPY BIRTHDAYYYYYYYYYYYYYYYYYYY";
+    "Chúc em luôn nở nụ cười trên môi...\n" +
+    "Chúc tương lai rực rỡ, gặp toàn người tốt...\n" +
+    "Chúc em thật nhiều hạnh phúc và bình an 💗\n";
 
-  let index = 0;
-
+  let i = 0;
   const typing = setInterval(() => {
-    if (index < text.length) {
-      const char = text.charAt(index);
-      if (char === "\n") {
+    if (i < text.length) {
+      if (text[i] === "\n") {
         noiDung.appendChild(document.createElement("br"));
       } else {
         const span = document.createElement("span");
-        span.textContent = char;
-        span.style.marginRight = "2px";
+        span.textContent = text[i];
         span.style.opacity = 0;
-        span.style.fontFamily = "Poppins, sans-serif";
-        span.style.transition = "opacity 0.25s";
+        span.style.transition = "0.25s";
         noiDung.appendChild(span);
-
-        requestAnimationFrame(() => {
-          span.style.opacity = 1;
-        });
+        requestAnimationFrame(() => (span.style.opacity = 1));
       }
-      index++;
+      i++;
     } else {
       clearInterval(typing);
-
-      // tạo ảnh ngay dưới nội dung
-
-      // chạy lại hiệu ứng trái tim
-      if (hieuUngDangChay) clearInterval(hieuUngDangChay);
-      hieuUngDangChay = setInterval(taoTraiTim, 1000);
-
-      // hiện nút Next
+      batHieuUngTim();
       btn.style.display = "inline-block";
     }
   }, 80);
 }
 
-function nextStep() {
-  const container = document.getElementById("confetti-container");
-  const btn = document.getElementById("nextBtn");
+/**********************
+ * STEP 3 – MÈO + CONFETTI
+ **********************/
+function runStep3() {
+  tatHieuUngTim();
+  document.body.style.backgroundColor = "#ebdcb2";
 
-  // dừng hiệu ứng trái tim
-  if (hieuUngDangChay) {
-    clearInterval(hieuUngDangChay);
-    hieuUngDangChay = null;
+  const trang2 = document.getElementById("trang2");
+  trang2.innerHTML = `
+    <div class="cat">
+      <div class="thought"><b>HẾT ÒI</b><p>Mãi iuuuu 🫰🫰🫰</p></div>
+      <img src="./meo4.jpg">
+      <canvas id="confettiCanvas" width="1400" height="700"
+        style="position:absolute;top:0;left:0;pointer-events:none;"></canvas>
+    </div>
+  `;
+
+  const canvas = document.getElementById("confettiCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const confetti = Array.from({ length: 700 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    s: 3 + Math.random() * 4,
+    v: 1 + Math.random() * 3,
+    c: `hsl(${Math.random() * 360},100%,70%)`,
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confetti.forEach((p) => {
+      ctx.fillStyle = p.c;
+      ctx.fillRect(p.x, p.y, p.s, p.s);
+      p.y += p.v;
+      if (p.y > canvas.height) p.y = -10;
+    });
+    requestAnimationFrame(draw);
   }
+  draw();
+}
 
-  // xóa trái tim cũ
-  container.innerHTML = "";
-
-  // ẩn nút Next
-  btn.style.display = "none";
-
-  // chuyển step
+/**********************
+ * NEXT STEP
+ **********************/
+function nextStep() {
   if (step === 1) {
     step = 2;
     runStep2();
@@ -179,106 +175,42 @@ function nextStep() {
   }
 }
 
-function runStep3() {
-  document.body.style.backgroundColor = "#ebdcb2";
-  const tieuDe = document.getElementById("tieuDe");
-  const noiDung = document.getElementById("noiDung");
-  const btn = document.getElementById("nextBtn");
-  const video = document.getElementById("videoChucMung");
-
-  tieuDe.innerText = "";
-  noiDung.innerHTML = "";
-  video.style.display = "none";
-  btn.style.display = "none";
-
-  // Ẩn canvas cũ (nếu có)
-  const oldCanvas = document.getElementById("particleCanvas");
-  if (oldCanvas) oldCanvas.style.display = "none";
-
-  // Tạo giao diện mèo
-  const trang2 = document.getElementById("trang2");
-  trang2.innerHTML = `
-    <div class="cat">
-      <div class="thought"><b>HẾT ÒI</b>
-      <p>Mãi iuuuuuu🫰🫰🫰</p></div>
-      <img src="./meo4.jpg" alt="meo">
-      <canvas id="confettiCanvas" width="1400" height="700" style="position:absolute;top:0;left:0;pointer-events:none;"></canvas>
-    </div>
-  `;
-  // Khởi tạo canvas confetti
-  const canvas = document.getElementById("confettiCanvas");
-  const ctx = canvas.getContext("2d");
-
-  // Tạo confetti
-  let confetti = [];
-  for (let i = 0; i < 800; i++) {
-    confetti.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: 4 + Math.random() * 3,
-      speed: 1 + Math.random() * 3,
-      color: `hsl(${Math.random() * 360}, 100%, 70%)`,
-    });
-  }
-
-  // Vẽ confetti
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    confetti.forEach((c) => {
-      ctx.fillStyle = c.color;
-      ctx.fillRect(c.x, c.y, c.size, c.size);
-      c.y += c.speed;
-      if (c.y > canvas.height) c.y = -10;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-
+/**********************
+ * NHẠC NỀN
+ **********************/
 function startBackgroundMusic() {
   const music = document.getElementById("backgroundMusic");
-  music.volume = 0.3; // âm lượng 30%
-  music.play().catch((err) => {
-    console.log("Autoplay bị chặn, cần người dùng click:", err);
-  });
-}
-function phatVideo() {
-  let video = document.getElementById("videoChucMung");
-  video.muted = false; // bật tiếng
-  video.volume = 0.5;
-  video.play();
+  music.volume = 0.3;
+  music.play().catch(() => {});
 }
 
-const container = document.getElementById("confetti-container");
-container.innerHTML = "";
-document.body.style.background = "";
+/**********************
+ * HIỆU ỨNG TRÁI TIM
+ **********************/
+function taoTraiTim() {
+  const layer = document.getElementById("heart-layer");
+  if (!layer) return;
 
-const video = document.getElementById("videoChucMung");
-video.pause();
-video.currentTime = 0;
-video.style.display = "none";
-video.src = "";
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.bottom = "-20px";
 
-if (hieuUngDangChay) {
+  const t = 3 + Math.random() * 3;
+  heart.style.animationDuration = t + "s";
+
+  layer.appendChild(heart);
+  setTimeout(() => heart.remove(), t * 1000);
+}
+
+function batHieuUngTim() {
+  if (hieuUngDangChay) return;
+  hieuUngDangChay = setInterval(taoTraiTim, 20);
+}
+
+function tatHieuUngTim() {
   clearInterval(hieuUngDangChay);
   hieuUngDangChay = null;
+  const layer = document.getElementById("heart-layer");
+  if (layer) layer.innerHTML = "";
 }
-
-/* 💖 Trái tim bay 💖 */
-function taoTraiTim() {
-  const container = document.getElementById("confetti-container");
-
-  for (let i = 0; i < 60; i++) {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.style.left = Math.random() * 100 + "%";
-    heart.style.animationDelay = Math.random() * 2 + "s";
-    container.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 4000);
-  }
-}
-
-
-
-
